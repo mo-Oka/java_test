@@ -1,4 +1,4 @@
-package first.pack;
+package first.pack.model;
 
 public class GroupData {
   private final String name;

@@ -1,5 +1,6 @@
-package first.pack;
+package first.pack.tests;
 
+import first.pack.model.ContactData;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
