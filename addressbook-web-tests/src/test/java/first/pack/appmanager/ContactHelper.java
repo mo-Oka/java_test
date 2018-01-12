@@ -10,7 +10,7 @@ public class ContactHelper extends HelperBase{
     super(wd);
   }
 
-  public void fillContactForm(ContactData contactData) {
+  public void fillContactForm(ContactData contactData, String day, String month, String group) {
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("lastname"), contactData.getLastName());
     type(By.name("nickname"), contactData.getNickName());
@@ -19,10 +19,10 @@ public class ContactHelper extends HelperBase{
     type(By.name("address"), contactData.getAddress());
     type(By.name("home"), contactData.getHomePhone());
     type(By.name("email"), contactData.getEmail());
-    clickDropdown("bday", "1");
-    clickDropdown("bmonth", "June");
+    clickDropdown("bday", day);
+    clickDropdown("bmonth", month);
     type(By.name("byear"), contactData.getYear());
-    clickDropdown("new_group", "test1");
+    clickDropdown("new_group", group);
     type(By.name("notes"), contactData.getNotes());
   }
 
