@@ -19,10 +19,10 @@ public class ContactHelper extends HelperBase{
     type(By.name("address"), contactData.getAddress());
     type(By.name("home"), contactData.getHomePhone());
     type(By.name("email"), contactData.getEmail());
-    clickIfSelected("bday");
-    clickIfSelected("bmonth");
+    clickDropdown("bday", "1");
+    clickDropdown("bmonth", "June");
     type(By.name("byear"), contactData.getYear());
-    clickIfSelected("new_group");
+    clickDropdown("new_group", "test1");
     type(By.name("notes"), contactData.getNotes());
   }
 
