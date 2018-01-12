@@ -19,20 +19,10 @@ public class ContactHelper extends HelperBase{
     type(By.name("address"), contactData.getAddress());
     type(By.name("home"), contactData.getHomePhone());
     type(By.name("email"), contactData.getEmail());
-
-    if (!wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[3]")).isSelected()) {
-      wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[3]")).click();
-    }
-    if (!wd.findElement(By.xpath("//div[@id='content']/form/select[2]//option[3]")).isSelected()) {
-      wd.findElement(By.xpath("//div[@id='content']/form/select[2]//option[3]")).click();
-    }
-
+    clickIfSelected("bday");
+    clickIfSelected("bmonth");
     type(By.name("byear"), contactData.getYear());
-
-    if (!wd.findElement(By.xpath("//div[@id='content']/form/select[5]//option[2]")).isSelected()) {
-      wd.findElement(By.xpath("//div[@id='content']/form/select[5]//option[2]")).click();
-    }
-
+    clickIfSelected("new_group");
     type(By.name("notes"), contactData.getNotes());
   }
 
@@ -42,6 +32,5 @@ public class ContactHelper extends HelperBase{
 
   public void initContactCreation() {
     click(By.linkText("add new"));
-    //click(By.cssSelector("li.all:nth-child(2) > a:nth-child(1)"));
   }
 }
