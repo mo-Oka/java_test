@@ -17,7 +17,7 @@ public class ApplicationManager {
 
   public void init() {
     wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
-    wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/");
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);

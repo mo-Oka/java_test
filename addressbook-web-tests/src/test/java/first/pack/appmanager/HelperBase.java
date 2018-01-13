@@ -2,6 +2,7 @@ package first.pack.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -23,8 +24,18 @@ public class HelperBase {
   }
 
   public void clickDropdown(String field, String value) {
-    Select dropdown = new Select(wd.findElement(By.name(field)));
-    dropdown.selectByVisibleText(value);
+    if (isElementPresent(By.name(field))){
+      new Select(wd.findElement(By.name(field))).selectByVisibleText(value);
+    }
+  }
+
+  public boolean isElementPresent(By locator) {
+    try {
+      wd.findElement(locator);
+      return true;
+    } catch (NoSuchElementException ex) {
+      return false;
+    }
   }
 
   public boolean isAlertPresent() {
