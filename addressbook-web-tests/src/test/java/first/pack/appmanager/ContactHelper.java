@@ -56,4 +56,12 @@ public class ContactHelper extends HelperBase{
     click(By.cssSelector("input[value='Delete']"));
   }
 
+  public void clickAlert() {
+    wd.switchTo().alert().accept();
+    wd.switchTo().defaultContent();
+  }
+
+  public void goToHomePage() {
+    click(By.linkText("home"));
+  }
 }
