@@ -2,12 +2,12 @@ package first.pack.appmanager;
 
 import first.pack.model.ContactData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class ContactHelper extends HelperBase{
 
-  public ContactHelper(FirefoxDriver wd) {
+  public ContactHelper(WebDriver wd) {
     super(wd);
   }
 
