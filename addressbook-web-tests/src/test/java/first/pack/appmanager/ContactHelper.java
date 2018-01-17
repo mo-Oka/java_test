@@ -49,9 +49,9 @@ public class ContactHelper extends HelperBase{
     click(By.name("update"));
   }
 
-//  public void selectContact() {
-//    click(By.name("selected[]"));
-//  }
+  public void selectContact() {
+    click(By.name("selected[]"));
+  }
 
   public void deleteSelectedContact() {
     click(By.cssSelector("input[value='Delete']"));
