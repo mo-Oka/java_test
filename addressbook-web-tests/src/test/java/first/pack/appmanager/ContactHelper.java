@@ -41,7 +41,7 @@ public class ContactHelper extends HelperBase{
     click(By.linkText("add new"));
   }
 
-  public void goToContactPage() {
+  public void clickEditContact() {
     click(By.cssSelector("#maintable td:nth-child(8) a"));
   }
 
