@@ -1,6 +1,7 @@
 package first.pack.tests;
 
 import first.pack.model.ContactData;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ContactModificationTest extends TestBase{
@@ -8,11 +9,14 @@ public class ContactModificationTest extends TestBase{
   @Test
   public void testContactModification() {
     app.getNavigationHelper().goToHomePage();
+    int before = app.getGroupHelper().getGroupCount();
     if (!app.getContactHelper().isThereAContact()){
       app.getContactHelper().createContact(new ContactData("First", "Last", "nick", "company1", "senior", "some address in a middle of nowhere", "1234567890", "first.last@email.em", "1", "June", "1990", "test1","test note"));
     }
     app.getContactHelper().clickEditContact();
     app.getContactHelper().fillContactForm(new ContactData("Name1-2","Last1-2","nick1-2","company1-2","title1-2","address1-2","123","qw@qw.qw","2","December","2000",null,"note1-2"), false);
     app.getContactHelper().submitContactModification();
+    int after = app.getGroupHelper().getGroupCount();
+    Assert.assertEquals(after, before);
   }
 }
