@@ -41,16 +41,16 @@ public class ContactHelper extends HelperBase{
     click(By.linkText("add new"));
   }
 
-  public void clickEditContact() {
-    click(By.cssSelector("#maintable td:nth-child(8) a"));
+  public void clickEditContact(int index) {
+    wd.findElements(By.cssSelector("#maintable td:nth-child(8) a")).get(index).click();
   }
 
   public void submitContactModification() {
     click(By.name("update"));
   }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void deleteSelectedContact() {
