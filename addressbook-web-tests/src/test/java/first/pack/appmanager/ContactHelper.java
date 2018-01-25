@@ -3,7 +3,11 @@ package first.pack.appmanager;
 import first.pack.model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase{
 
@@ -70,5 +74,16 @@ public class ContactHelper extends HelperBase{
 
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
+  }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("input[name='selected[]']"));
+    for (WebElement element : elements){
+      String FirstName = element.getText();
+      ContactData contact = new ContactData(FirstName,"LastName", null, null,null,null,null,null,null,null,null,null,null);
+      contacts.add(contact);
+    }
+    return contacts;
   }
 }
