@@ -1,5 +1,7 @@
 package first.pack.model;
 
+import java.util.Objects;
+
 public class ContactData {
   private final String firstName;
   private final String lastName;
@@ -14,6 +16,40 @@ public class ContactData {
   private final String day;
   private final String month;
   private String group;
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return Objects.equals(firstName, that.firstName) &&
+            Objects.equals(lastName, that.lastName) &&
+            Objects.equals(nickName, that.nickName) &&
+            Objects.equals(title, that.title) &&
+            Objects.equals(companyName, that.companyName) &&
+            Objects.equals(address, that.address) &&
+            Objects.equals(notes, that.notes) &&
+            Objects.equals(day, that.day);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(firstName, lastName, nickName, title, companyName, address, homePhone, email, year, notes, day, month, group);
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", nickName='" + nickName + '\'' +
+            ", title='" + title + '\'' +
+            ", companyName='" + companyName + '\'' +
+            ", address='" + address + '\'' +
+            ", notes='" + notes + '\'' +
+            '}';
+  }
 
   public ContactData(String firstName, String lastName, String nickName, String companyName, String title, String address, String homePhone, String email, String day, String month, String year, String group, String notes) {
     this.firstName = firstName;
