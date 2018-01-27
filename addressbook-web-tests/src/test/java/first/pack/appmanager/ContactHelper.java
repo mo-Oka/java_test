@@ -18,23 +18,13 @@ public class ContactHelper extends HelperBase{
   public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("lastname"), contactData.getLastName());
-    type(By.name("nickname"), contactData.getNickName());
-    type(By.name("title"), contactData.getTitle());
-    type(By.name("company"), contactData.getCompanyName());
     type(By.name("address"), contactData.getAddress());
-    type(By.name("home"), contactData.getHomePhone());
-    type(By.name("email"), contactData.getEmail());
-    clickDropdown("bday", contactData.getDay());
-    clickDropdown("bmonth", contactData.getMonth());
-    type(By.name("byear"), contactData.getYear());
 
     if(creation) {
       clickDropdown("new_group", contactData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
-
-    type(By.name("notes"), contactData.getNotes());
   }
 
   public void submitContactForm() {
@@ -77,12 +67,16 @@ public class ContactHelper extends HelperBase{
   }
 
   public List<ContactData> getContactList() {
-    List<ContactData> contacts = new ArrayList<>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("input[name='selected[]']"));
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("#maintable tr"));
+    elements.remove(0);
     for (WebElement element : elements){
-      String FirstName = element.getText();
-      int id = Integer.parseInt(element.getAttribute("value"));
-      ContactData contact = new ContactData(id, FirstName,"LastName", null, null,null,null,null,null,null,null,null,null,null);
+      List<WebElement>  row = element.findElements(By.cssSelector("td"));
+      String firstName = row.get(2).getText();
+      String lastName = row.get(1).getText();
+      String address = row.get(3).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      ContactData contact = new ContactData(id, firstName,lastName, address);
       contacts.add(contact);
     }
     return contacts;

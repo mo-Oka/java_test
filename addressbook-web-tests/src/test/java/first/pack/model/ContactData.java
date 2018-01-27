@@ -18,6 +18,24 @@ public class ContactData {
   private final String month;
   private String group;
 
+  public ContactData(int id, String firstName, String lastName, String address) {
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.nickName = null;
+    this.companyName = null;
+    this.title = null;
+    this.address = address;
+    this.homePhone = null;
+    this.email = null;
+    this.day = null;
+    this.month = null;
+    this.year = null;
+    this.group = null;
+    this.notes = null;
+
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -25,18 +43,13 @@ public class ContactData {
     ContactData that = (ContactData) o;
     return Objects.equals(firstName, that.firstName) &&
             Objects.equals(lastName, that.lastName) &&
-            Objects.equals(nickName, that.nickName) &&
-            Objects.equals(title, that.title) &&
-            Objects.equals(companyName, that.companyName) &&
-            Objects.equals(address, that.address) &&
-            Objects.equals(notes, that.notes) &&
-            Objects.equals(day, that.day);
+            Objects.equals(address, that.address);
   }
 
   @Override
   public int hashCode() {
 
-    return Objects.hash(firstName, lastName, nickName, title, companyName, address, homePhone, email, year, notes, day, month, group);
+    return Objects.hash(firstName, lastName, address);
   }
 
   @Override
