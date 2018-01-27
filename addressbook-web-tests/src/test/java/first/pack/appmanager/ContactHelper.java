@@ -18,13 +18,23 @@ public class ContactHelper extends HelperBase{
   public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("lastname"), contactData.getLastName());
+    type(By.name("nickname"), contactData.getNickName());
+    type(By.name("title"), contactData.getTitle());
+    type(By.name("company"), contactData.getCompanyName());
     type(By.name("address"), contactData.getAddress());
+    type(By.name("home"), contactData.getHomePhone());
+    type(By.name("email"), contactData.getEmail());
+    clickDropdown("bday", contactData.getDay());
+    clickDropdown("bmonth", contactData.getMonth());
+    type(By.name("byear"), contactData.getYear());
 
     if(creation) {
       clickDropdown("new_group", contactData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
+
+    type(By.name("notes"), contactData.getNotes());
   }
 
   public void submitContactForm() {
@@ -76,7 +86,7 @@ public class ContactHelper extends HelperBase{
       String lastName = row.get(1).getText();
       String address = row.get(3).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData contact = new ContactData(id, firstName,lastName, address);
+      ContactData contact = new ContactData(id, firstName,lastName, null, null, null,address, null, null, null, null, null, null,null);
       contacts.add(contact);
     }
     return contacts;

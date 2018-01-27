@@ -7,34 +7,16 @@ public class ContactData {
   private final String firstName;
   private final String lastName;
   private final String nickName;
-  private final String title;
   private final String companyName;
+  private final String title;
   private final String address;
   private final String homePhone;
   private final String email;
-  private final String year;
-  private final String notes;
   private final String day;
   private final String month;
+  private final String year;
   private String group;
-
-  public ContactData(int id, String firstName, String lastName, String address) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.nickName = null;
-    this.companyName = null;
-    this.title = null;
-    this.address = address;
-    this.homePhone = null;
-    this.email = null;
-    this.day = null;
-    this.month = null;
-    this.year = null;
-    this.group = null;
-    this.notes = null;
-
-  }
+  private final String notes;
 
   @Override
   public boolean equals(Object o) {
@@ -58,9 +40,9 @@ public class ContactData {
             "firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", nickName='" + nickName + '\'' +
+            ", nickName='" + companyName + '\'' +
             ", title='" + title + '\'' +
-            ", companyName='" + companyName + '\'' +
-            ", address='" + address + '\'' +
+            ", nickName='" + address + '\'' +
             ", notes='" + notes + '\'' +
             '}';
   }
@@ -150,6 +132,7 @@ public class ContactData {
   public String getMonth() {
     return month;
   }
+
   public String getGroup() {
     return group;
   }
