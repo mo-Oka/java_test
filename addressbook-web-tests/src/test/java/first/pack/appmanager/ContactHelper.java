@@ -72,6 +72,21 @@ public class ContactHelper extends HelperBase{
     submitContactForm();
   }
 
+  public void modifyContact(int index, ContactData contact) {
+    clickEditContact(index);
+    fillContactForm(contact, false);
+    submitContactModification();
+    goToHomePage();
+  }
+
+  public void goToHomePage() {
+    if (isElementPresent(By.id("maintable"))) {
+      return;
+    }
+    click(By.linkText("home"));
+  }
+
+
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }

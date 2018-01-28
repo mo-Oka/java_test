@@ -2,6 +2,7 @@ package first.pack.tests;
 
 import first.pack.model.ContactData;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Comparator;
@@ -10,22 +11,24 @@ import java.util.List;
 
 public class ContactModificationTest extends TestBase{
 
-  @Test
-  public void testContactModification() {
-    app.getNavigationHelper().goToHomePage();
-    List<ContactData> before = app.getContactHelper().getContactList();
+  @BeforeMethod
+  public void ensurePreconditions(){
+    app.getContactHelper().goToHomePage();
     if (!app.getContactHelper().isThereAContact()){
       app.getContactHelper().createContact(new ContactData(1,"First", "Last", null, null, null,"some address in a middle of nowhere",null, null, null,null, null, null, null));
     }
-    ContactData contact = new ContactData(before.get(before.size() - 1).getId(), "First1", "Last1", "Nick1","company1", "senior", "some address in a middle of nowhere1", "1234567890", "first.last@email.em", "1", "June", "1990", "test1", "note1");
-    app.getContactHelper().clickEditContact(before.size() - 1);
-    app.getContactHelper().fillContactForm(contact, false);
-    app.getContactHelper().submitContactModification();
-    app.getNavigationHelper().goToHomePage();
+  }
+
+  @Test
+  public void testContactModification() {
+    List<ContactData> before = app.getContactHelper().getContactList();
+    int index = before.size() - 1;
+    ContactData contact = new ContactData(before.get(index).getId(), "First1", "Last1", "Nick1","company1", "senior", "some address in a middle of nowhere1", "1234567890", "first.last@email.em", "1", "June", "1990", "test1", "note1");
+    app.getContactHelper().modifyContact(index, contact);
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(before.size() - 1);
+    before.remove(index);
     before.add(contact);
     Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
     before.sort(byId);
