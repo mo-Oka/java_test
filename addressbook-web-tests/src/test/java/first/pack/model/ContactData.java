@@ -3,47 +3,39 @@ package first.pack.model;
 import java.util.Objects;
 
 public class ContactData {
-  private int id;
-  private final String firstName;
-  private final String lastName;
-  private final String nickName;
-  private final String companyName;
-  private final String title;
-  private final String address;
-  private final String homePhone;
-  private final String email;
-  private final String day;
-  private final String month;
-  private final String year;
+  private int id = Integer.MAX_VALUE;
+  private String firstName;
+  private String lastName;
+  private String nickName;
+  private String companyName;
+  private String title;
+  private String address;
+  private String homePhone;
+  private String email;
+  private String day;
+  private String month;
+  private String year;
   private String group;
-  private final String notes;
+  private String notes;
 
   @Override
   public String toString() {
     return "ContactData{" +
-            "id='" + id + '\'' +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", nickName='" + nickName + '\'' +
+            ", companyName='" + companyName + '\'' +
+            ", title='" + title + '\'' +
+            ", address='" + address + '\'' +
+            ", homePhone='" + homePhone + '\'' +
+            ", email='" + email + '\'' +
+            ", day='" + day + '\'' +
+            ", month='" + month + '\'' +
+            ", year='" + year + '\'' +
+            ", group='" + group + '\'' +
+            ", notes='" + notes + '\'' +
             '}';
-  }
-
-  public int getId() {
-    return id;
-  }
-
-  public ContactData(int id, String firstName, String lastName, String nickName, String companyName, String title, String address, String homePhone, String email, String day, String month, String year, String group, String notes) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.nickName = nickName;
-    this.companyName = companyName;
-    this.title = title;
-    this.address = address;
-    this.homePhone = homePhone;
-    this.email = email;
-    this.day = day;
-    this.month = month;
-    this.year = year;
-    this.group = group;
-    this.notes = notes;
   }
 
   @Override
@@ -58,25 +50,11 @@ public class ContactData {
 
   @Override
   public int hashCode() {
-
     return Objects.hash(firstName, lastName, address);
   }
 
-  public ContactData(String firstName, String lastName, String nickName, String companyName, String title, String address, String homePhone, String email, String day, String month, String year, String group, String notes) {
-    this.id = Integer.MAX_VALUE;;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.nickName = nickName;
-    this.companyName = companyName;
-    this.title = title;
-    this.address = address;
-    this.homePhone = homePhone;
-    this.email = email;
-    this.day = day;
-    this.month = month;
-    this.year = year;
-    this.group = group;
-    this.notes = notes;
+  public int getId() {
+    return id;
   }
 
   public String getFirstName() {
@@ -131,7 +109,75 @@ public class ContactData {
     return group;
   }
 
-  public void setId(int id) {
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
   }
+
+  public ContactData withFirstName(String firstName) {
+    this.firstName = firstName;
+    return this;
+  }
+
+  public ContactData withLastName(String lastName) {
+    this.lastName = lastName;
+    return this;
+  }
+
+  public ContactData withNickName(String nickName) {
+    this.nickName = nickName;
+    return this;
+  }
+
+  public ContactData withCompanyName(String companyName) {
+    this.companyName = companyName;
+    return this;
+  }
+
+  public ContactData withTitle(String title) {
+    this.title = title;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withHomePhone(String homePhone) {
+    this.homePhone = homePhone;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withDay(String day) {
+    this.day = day;
+    return this;
+  }
+
+  public ContactData withMonth(String month) {
+    this.month = month;
+    return this;
+  }
+
+  public ContactData withYear(String year) {
+    this.year = year;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
+  public ContactData withNotes(String notes) {
+    this.notes = notes;
+    return this;
+  }
+
+
 }
