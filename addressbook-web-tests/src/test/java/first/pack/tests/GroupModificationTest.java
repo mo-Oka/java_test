@@ -1,13 +1,14 @@
 package first.pack.tests;
 
 import first.pack.model.GroupData;
-import org.testng.Assert;
+import first.pack.model.Groups;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.junit.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupModificationTest extends TestBase{
 
@@ -21,7 +22,7 @@ public class GroupModificationTest extends TestBase{
 
   @Test
   public void testGroupModification(){
-    Set<GroupData> before = app.group().all();
+    Groups before = app.group().all();
     GroupData modifiedGroup = before.iterator().next();
     GroupData group = new GroupData()
             .withId(modifiedGroup.getId())
@@ -29,12 +30,10 @@ public class GroupModificationTest extends TestBase{
             .withHeader("test1-2")
             .withFooter("test1-3");
     app.group().modify(group);
-    Set<GroupData> after = app.group().all();
-    Assert.assertEquals(after.size(), before.size());
+    Groups after = app.group().all();
 
-    before.remove(modifiedGroup);
-    before.add(group);
-    Assert.assertEquals(before, after);
+    assertThat(after.size(), equalTo(before.size()));
+    MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.without(modifiedGroup).withAdded(group)));
   }
 
 }

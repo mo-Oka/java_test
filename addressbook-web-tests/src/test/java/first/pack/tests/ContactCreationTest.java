@@ -1,17 +1,19 @@
 package first.pack.tests;
 
 import first.pack.model.ContactData;
-import org.testng.Assert;
+import first.pack.model.Contacts;
+import org.hamcrest.junit.MatcherAssert;
 import org.testng.annotations.Test;
 
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTest extends TestBase{
 
   @Test
   public void testContactCreation() {
     app.contact().goToHomePage();
-    Set<ContactData> before = app.contact().all();
+    Contacts before = app.contact().all();
     ContactData contact = new ContactData()
             .withFirstName("First123")
             .withLastName("Last")
@@ -28,12 +30,11 @@ public class ContactCreationTest extends TestBase{
             .withNotes("test note");
     app.contact().create(contact);
     app.contact().goToHomePage();
-    Set<ContactData> after = app.contact().all();
-    Assert.assertEquals(after.size(), before.size() + 1);
+    Contacts after = app.contact().all();
 
-    contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt());
-    before.add(contact);
-    Assert.assertEquals(before, after);
+    assertThat(after.size(), equalTo(before.size() + 1));
+    MatcherAssert.assertThat(after, equalTo(
+            before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }
 
 }
