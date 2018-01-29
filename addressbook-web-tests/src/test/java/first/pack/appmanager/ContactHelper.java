@@ -1,15 +1,19 @@
 package first.pack.appmanager;
 
 import first.pack.model.ContactData;
+import javafx.scene.control.CheckBox;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class ContactHelper extends HelperBase{
+public class ContactHelper extends HelperBase {
 
   public ContactHelper(WebDriver wd) {
     super(wd);
@@ -28,7 +32,7 @@ public class ContactHelper extends HelperBase{
     clickDropdown("bmonth", contactData.getMonth());
     type(By.name("byear"), contactData.getYear());
 
-    if(creation) {
+    if (creation) {
       clickDropdown("new_group", contactData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
@@ -45,16 +49,25 @@ public class ContactHelper extends HelperBase{
     click(By.linkText("add new"));
   }
 
-  public void clickEditContact(int index) {
-    wd.findElements(By.cssSelector("#maintable td:nth-child(8) a")).get(index).click();
+  public void clickEditContactById(int id) {
+    List<WebElement> rows = wd.findElements(By.cssSelector("#maintable tr"));
+    rows.remove(0);
+    for (WebElement row : rows) {
+      List<WebElement> columns = row.findElements(By.cssSelector("td"));
+      int checkBoxId = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
+      if (checkBoxId == id){
+        columns.get(7).findElement(By.cssSelector("a")).click();
+        break;
+      }
+    }
   }
 
   public void submitContactModification() {
     click(By.name("update"));
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  private void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
   public void deleteSelectedContact() {
@@ -72,15 +85,15 @@ public class ContactHelper extends HelperBase{
     submitContactForm();
   }
 
-  public void modify(int index, ContactData contact) {
-    clickEditContact(index);
+  public void modify(ContactData contact) {
+    clickEditContactById(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
     goToHomePage();
   }
 
-  public void delete(int index) {
-    selectContact(index);
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     deleteSelectedContact();
     clickAlert();
     goToHomePage();
@@ -93,21 +106,20 @@ public class ContactHelper extends HelperBase{
     click(By.linkText("home"));
   }
 
-
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("#maintable tr"));
-    elements.remove(0);
-    for (WebElement element : elements){
-      List<WebElement>  row = element.findElements(By.cssSelector("td"));
-      String firstName = row.get(2).getText();
-      String lastName = row.get(1).getText();
-      String address = row.get(3).getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
+    List<WebElement> rows = wd.findElements(By.cssSelector("#maintable tr"));
+    rows.remove(0);
+    for (WebElement row : rows) {
+      List<WebElement> columns = row.findElements(By.cssSelector("td"));
+      String lastName = columns.get(1).getText();
+      String firstName = columns.get(2).getText();
+      String address = columns.get(3).getText();
+      int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
       contacts.add(new ContactData()
               .withId(id)
               .withFirstName(firstName)
@@ -116,4 +128,5 @@ public class ContactHelper extends HelperBase{
     }
     return contacts;
   }
+
 }
