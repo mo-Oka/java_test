@@ -35,7 +35,7 @@ public class ContactModificationTest extends TestBase{
             .withCompanyName("company1")
             .withTitle("senior1")
             .withAddress("some address in a middle of nowhere1")
-            .withHomePhone("00000000000")
+            .withHomePhone("0000000000")
             .withEmail("first111@email.em")
             .withDay("15")
             .withMonth("May")

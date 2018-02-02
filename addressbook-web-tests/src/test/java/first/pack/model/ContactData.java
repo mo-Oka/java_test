@@ -11,12 +11,15 @@ public class ContactData {
   private String title;
   private String address;
   private String homePhone;
+  private String mobilePhone;
+  private String workPhone;
   private String email;
   private String day;
   private String month;
   private String year;
   private String group;
   private String notes;
+  private String allPhones;
 
   @Override
   public boolean equals(Object o) {
@@ -33,26 +36,6 @@ public class ContactData {
   public int hashCode() {
 
     return Objects.hash(id, firstName, lastName, address);
-  }
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", nickName='" + nickName + '\'' +
-            ", companyName='" + companyName + '\'' +
-            ", title='" + title + '\'' +
-            ", address='" + address + '\'' +
-            ", homePhone='" + homePhone + '\'' +
-            ", email='" + email + '\'' +
-            ", day='" + day + '\'' +
-            ", month='" + month + '\'' +
-            ", year='" + year + '\'' +
-            ", group='" + group + '\'' +
-            ", notes='" + notes + '\'' +
-            '}';
   }
 
   public int getId() {
@@ -85,6 +68,14 @@ public class ContactData {
 
   public String getHomePhone() {
     return homePhone;
+  }
+
+  public String getMobilePhone() {
+    return mobilePhone;
+  }
+
+  public String getWorkPhone() {
+    return workPhone;
   }
 
   public String getEmail() {
@@ -151,6 +142,43 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone;
+    return this;
+  }
+
+  public ContactData withWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
+    return this;
+  }
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", nickName='" + nickName + '\'' +
+            ", companyName='" + companyName + '\'' +
+            ", title='" + title + '\'' +
+            ", address='" + address + '\'' +
+            ", homePhone='" + homePhone + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            ", workPhone='" + workPhone + '\'' +
+            ", email='" + email + '\'' +
+            ", day='" + day + '\'' +
+            ", month='" + month + '\'' +
+            ", year='" + year + '\'' +
+            ", group='" + group + '\'' +
+            ", notes='" + notes + '\'' +
+            ", allPhones='" + allPhones + '\'' +
+            '}';
+  }
+
   public ContactData withEmail(String email) {
     this.email = email;
     return this;
@@ -181,5 +209,9 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
 
 }
