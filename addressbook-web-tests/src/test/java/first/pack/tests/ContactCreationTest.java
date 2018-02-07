@@ -5,6 +5,8 @@ import first.pack.model.Contacts;
 import org.hamcrest.junit.MatcherAssert;
 import org.testng.annotations.Test;
 
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -14,6 +16,7 @@ public class ContactCreationTest extends TestBase{
   public void testContactCreation() {
     app.contact().goToHomePage();
     Contacts before = app.contact().all();
+    File photo = new File("src/test/resources/stru.jpg");
     ContactData contact = new ContactData()
             .withFirstName("First123")
             .withLastName("Last")
@@ -27,7 +30,8 @@ public class ContactCreationTest extends TestBase{
             .withMonth("June")
             .withYear("1990")
             .withGroup("test1")
-            .withNotes("test note");
+            .withNotes("test note")
+            .withPhoto(photo);
     app.contact().create(contact);
     app.contact().goToHomePage();
     assertThat(app.contact().count(), equalTo(before.size() + 1));
@@ -36,19 +40,4 @@ public class ContactCreationTest extends TestBase{
     MatcherAssert.assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }
-
-//  @Test
-//  public void testBadContactCreation() {
-//    app.contact().goToHomePage();
-//    Contacts before = app.contact().all();
-//    ContactData contact = new ContactData()
-//            .withFirstName("First123'");
-//    app.contact().create(contact);
-//    app.contact().goToHomePage();
-//    assertThat(app.contact().count(), equalTo(before.size()));
-//
-//    Contacts after = app.contact().all();
-//    MatcherAssert.assertThat(after, equalTo(before));
-//  }
-
 }

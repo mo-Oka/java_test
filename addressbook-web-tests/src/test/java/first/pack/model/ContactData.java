@@ -1,5 +1,6 @@
 package first.pack.model;
 
+import java.io.File;
 import java.util.Objects;
 
 public class ContactData {
@@ -23,6 +24,7 @@ public class ContactData {
   private String email2;
   private String email3;
   private String allEmails;
+  private File photo;
 
   @Override
   public boolean equals(Object o) {
@@ -39,6 +41,32 @@ public class ContactData {
   public int hashCode() {
 
     return Objects.hash(id, firstName, lastName, address);
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", nickName='" + nickName + '\'' +
+            ", companyName='" + companyName + '\'' +
+            ", title='" + title + '\'' +
+            ", address='" + address + '\'' +
+            ", homePhone='" + homePhone + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            ", workPhone='" + workPhone + '\'' +
+            ", email='" + email + '\'' +
+            ", day='" + day + '\'' +
+            ", month='" + month + '\'' +
+            ", year='" + year + '\'' +
+            ", group='" + group + '\'' +
+            ", notes='" + notes + '\'' +
+            ", allPhones='" + allPhones + '\'' +
+            ", email2='" + email2 + '\'' +
+            ", email3='" + email3 + '\'' +
+            ", allEmails='" + allEmails + '\'' +
+            '}';
   }
 
   public int getId() {
@@ -172,35 +200,14 @@ public class ContactData {
     return email3;
   }
 
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", nickName='" + nickName + '\'' +
-            ", companyName='" + companyName + '\'' +
-            ", title='" + title + '\'' +
-            ", address='" + address + '\'' +
-            ", homePhone='" + homePhone + '\'' +
-            ", mobilePhone='" + mobilePhone + '\'' +
-            ", workPhone='" + workPhone + '\'' +
-            ", email='" + email + '\'' +
-            ", day='" + day + '\'' +
-            ", month='" + month + '\'' +
-            ", year='" + year + '\'' +
-            ", group='" + group + '\'' +
-            ", notes='" + notes + '\'' +
-            ", allPhones='" + allPhones + '\'' +
-            ", email2='" + email2 + '\'' +
-            ", email3='" + email3 + '\'' +
-            ", allEmails='" + allEmails + '\'' +
-            '}';
-  }
-
   public String getAllEmails() {
     return allEmails;
   }
+
+  public File getPhoto() {
+    return photo;
+  }
+
 
   public ContactData withDay(String day) {
     this.day = day;
@@ -244,6 +251,11 @@ public class ContactData {
 
   public ContactData withAllEmail(String allEmails) {
     this.allEmails = allEmails;
+    return this;
+  }
+
+  public ContactData withPhoto(File photo) {
+    this.photo = photo;
     return this;
   }
 }
