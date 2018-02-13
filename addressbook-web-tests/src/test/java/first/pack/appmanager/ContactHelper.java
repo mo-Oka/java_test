@@ -24,7 +24,7 @@ public class ContactHelper extends HelperBase {
     type(By.name("address"), contactData.getAddress());
     type(By.name("home"), contactData.getHomePhone());
     type(By.name("email"), contactData.getEmail());
-    attach(By.name("photo"), contactData.getPhoto());
+    //attach(By.name("photo"), contactData.getPhoto());
     clickDropdown("bday", contactData.getDay());
     clickDropdown("bmonth", contactData.getMonth());
     type(By.name("byear"), contactData.getYear());
@@ -154,22 +154,35 @@ public class ContactHelper extends HelperBase {
     clickEditContactById(contact.getId());
     String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
     String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String nickName = wd.findElement(By.name("nickname")).getAttribute("value");
+    String company = wd.findElement(By.name("company")).getAttribute("value");
+    String title = wd.findElement(By.name("title")).getAttribute("value");
+    String address = wd.findElement(By.name("address")).getAttribute("value");
     String home = wd.findElement(By.name("home")).getAttribute("value");
     String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
     String work = wd.findElement(By.name("work")).getAttribute("value");
     String email = wd.findElement(By.name("email")).getAttribute("value");
     String email2 = wd.findElement(By.name("email2")).getAttribute("value");
     String email3 = wd.findElement(By.name("email3")).getAttribute("value");
+    String year = wd.findElement(By.name("byear")).getAttribute("value");
+    String notes = wd.findElement(By.name("notes")).getAttribute("value");
+
     wd.navigate().back();
     return new ContactData()
             .withId(contact.getId())
             .withFirstName(firstname)
             .withLastName(lastname)
+            .withNickName(nickName)
+            .withCompanyName(company)
+            .withTitle(title)
+            .withAddress(address)
             .withHomePhone(home)
             .withMobilePhone(mobile)
             .withWorkPhone(work)
             .withEmail(email)
             .withEmail2(email2)
-            .withEmail3(email3);
+            .withEmail3(email3)
+            .withYear(year)
+            .withNotes(notes);
   }
 }

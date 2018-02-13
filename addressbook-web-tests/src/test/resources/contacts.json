@@ -1,0 +1,50 @@
+[
+  {
+    "firstName": "First 0",
+    "lastName": "Last 0",
+    "nickName": "nick0",
+    "companyName": "company0",
+    "title": "senior0",
+    "address": "address 0",
+    "homePhone": "1230",
+    "email": "first0.last0@email.em",
+    "day": "1",
+    "month": "June",
+    "year": "1990",
+    "group": "test1",
+    "notes": "test note 0",
+    "photo": {}
+  },
+  {
+    "firstName": "First 1",
+    "lastName": "Last 1",
+    "nickName": "nick1",
+    "companyName": "company1",
+    "title": "senior1",
+    "address": "address 1",
+    "homePhone": "1231",
+    "email": "first1.last1@email.em",
+    "day": "1",
+    "month": "June",
+    "year": "1991",
+    "group": "test1",
+    "notes": "test note 1",
+    "photo": {}
+  },
+  {
+    "firstName": "First 2",
+    "lastName": "Last 2",
+    "nickName": "nick2",
+    "companyName": "company2",
+    "title": "senior2",
+    "address": "address 2",
+    "homePhone": "1232",
+    "email": "first2.last2@email.em",
+    "day": "1",
+    "month": "June",
+    "year": "1992",
+    "group": "test1",
+    "notes": "test note 2",
+    "photo": {}
+  }
+]
