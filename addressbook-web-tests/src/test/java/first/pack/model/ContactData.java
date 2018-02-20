@@ -3,13 +3,19 @@ package first.pack.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 
 @XStreamAlias("contacts")
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
   @XStreamOmitField
+  @Id
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
   @Expose
   private String firstName;
@@ -18,34 +24,54 @@ public class ContactData {
   @Expose
   private String nickName;
   @Expose
+  @Column(name = "company")
   private String companyName;
   @Expose
   private String title;
   @Expose
+  @Type(type = "text")
   private String address;
   @Expose
+  @Column(name = "home")
+  @Type(type = "text")
   private String homePhone;
   @Expose
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobilePhone;
+  @Column(name = "work")
+  @Type(type = "text")
   private String workPhone;
   @Expose
+  @Type(type = "text")
   private String email;
   @Expose
+  @Column(name = "bday", columnDefinition = "TINYINT(1) DEFAULT 0")
   private String day;
   @Expose
+  @Column(name = "bmonth")
   private String month;
   @Expose
+  @Column(name = "byear")
   private String year;
   @Expose
+  @Transient
   private String group;
   @Expose
+  @Type(type = "text")
   private String notes;
+  @Transient
   private String allPhones;
+  @Type(type = "text")
   private String email2;
+  @Type(type = "text")
   private String email3;
+  @Transient
   private String allEmails;
   @Expose
-  private File photo;
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
   @Override
   public boolean equals(Object o) {
@@ -226,9 +252,8 @@ public class ContactData {
   }
 
   public File getPhoto() {
-    return photo;
+    return new File(photo);
   }
-
 
   public ContactData withDay(String day) {
     this.day = day;
@@ -276,7 +301,7 @@ public class ContactData {
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 }
