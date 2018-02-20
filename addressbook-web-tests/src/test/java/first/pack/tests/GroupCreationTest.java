@@ -6,6 +6,8 @@ import com.thoughtworks.xstream.XStream;
 import first.pack.model.GroupData;
 import first.pack.model.Groups;
 import org.hamcrest.junit.MatcherAssert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -21,6 +23,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTest extends TestBase {
+
 
   @DataProvider
   public Iterator<Object[]> validGroupsFromXML() throws IOException {
