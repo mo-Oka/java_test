@@ -6,8 +6,6 @@ import com.thoughtworks.xstream.XStream;
 import first.pack.model.GroupData;
 import first.pack.model.Groups;
 import org.hamcrest.junit.MatcherAssert;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -60,11 +58,11 @@ public class GroupCreationTest extends TestBase {
   @Test(dataProvider = "validGroupsFromJSON")
   public void testGroupCreation(GroupData group) {
     app.goTo().groupPage();
-    Groups before = app.group().all();
+    Groups before = app.db().groups();
     app.group().create(group);
     assertThat(app.group().count(), equalTo(before.size() + 1));
 
-    Groups after = app.group().all();
+    Groups after = app.db().groups();
     MatcherAssert.assertThat(after, equalTo(
             before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
@@ -73,12 +71,12 @@ public class GroupCreationTest extends TestBase {
   public void testBadGroupCreation() {
 
     app.goTo().groupPage();
-    Groups before = app.group().all();
+    Groups before = app.db().groups();
     GroupData group = new GroupData().withName("test2'");
     app.group().create(group);
     assertThat(app.group().count(), equalTo(before.size()));
 
-    Groups after = app.group().all();
+    Groups after = app.db().groups();
     MatcherAssert.assertThat(after, equalTo(before));
   }
 }

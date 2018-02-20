@@ -25,12 +25,12 @@ public class ContactDeletionTest extends TestBase{
   @Test
   public void testContactDeletion(){
     app.contact().goToHomePage();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData deletedContact = before.iterator().next();
     app.contact().delete(deletedContact);
     assertThat(app.contact().count(), equalTo(before.size() - 1));
 
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     MatcherAssert.assertThat(after, equalTo(before.without(deletedContact)));
   }
 

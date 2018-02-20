@@ -13,19 +13,21 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactModificationTest extends TestBase{
 
   @BeforeMethod
-  public void ensurePreconditions(){
-    app.contact().goToHomePage();
-    if (app.contact().all().size() == 0){
-      app.contact().create(new ContactData()
-              .withFirstName("First123")
-              .withLastName("Last")
-              .withAddress("some address in a middle of nowhere"));
+  public void ensurePreconditions() {
+    if (app.db().contacts().size() == 0) {
+      app.contact().goToHomePage();
+      if (app.contact().all().size() == 0) {
+        app.contact().create(new ContactData()
+                .withFirstName("First123")
+                .withLastName("Last")
+                .withAddress("some address in a middle of nowhere"));
+      }
     }
   }
 
   @Test
   public void testContactModification() {
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData()
             .withId(modifiedContact.getId())
@@ -36,16 +38,20 @@ public class ContactModificationTest extends TestBase{
             .withTitle("senior1")
             .withAddress("some address in a middle of nowhere1")
             .withHomePhone("0000000000")
+            .withMobilePhone("")
+            .withWorkPhone("")
             .withEmail("first111@email.em")
+            .withEmail2("")
+            .withEmail3("")
             .withDay("15")
             .withMonth("May")
             .withYear("2000")
-            .withGroup("test1")
             .withNotes("test note1");
+//    app.contact().goToHomePage();
     app.contact().modify(contact);
     assertThat(app.group().count(), equalTo(before.size()));
 
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.without(modifiedContact).withAdded(contact)));
   }
 }

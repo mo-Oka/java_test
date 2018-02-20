@@ -74,23 +74,6 @@ public class ContactData {
   private String photo;
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return id == that.id &&
-            Objects.equals(firstName, that.firstName) &&
-            Objects.equals(lastName, that.lastName) &&
-            Objects.equals(address, that.address);
-  }
-
-  @Override
-  public int hashCode() {
-
-    return Objects.hash(id, firstName, lastName, address);
-  }
-
-  @Override
   public String toString() {
     return "ContactData{" +
             "id=" + id +
@@ -298,6 +281,38 @@ public class ContactData {
   public ContactData withAllEmail(String allEmails) {
     this.allEmails = allEmails;
     return this;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return id == that.id &&
+            Objects.equals(firstName, that.firstName) &&
+            Objects.equals(lastName, that.lastName) &&
+            Objects.equals(nickName, that.nickName) &&
+            Objects.equals(companyName, that.companyName) &&
+            Objects.equals(title, that.title) &&
+            Objects.equals(address, that.address) &&
+            Objects.equals(homePhone, that.homePhone) &&
+            Objects.equals(mobilePhone, that.mobilePhone) &&
+            Objects.equals(workPhone, that.workPhone) &&
+            Objects.equals(email, that.email) &&
+            Objects.equals(day, that.day) &&
+            Objects.equals(month, that.month) &&
+            Objects.equals(year, that.year) &&
+            Objects.equals(notes, that.notes) &&
+            Objects.equals(allPhones, that.allPhones) &&
+            Objects.equals(email2, that.email2) &&
+            Objects.equals(email3, that.email3) &&
+            Objects.equals(allEmails, that.allEmails);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(id, firstName, lastName, nickName, companyName, title, address, homePhone, mobilePhone, workPhone, email, day, month, year, notes, allPhones, email2, email3, allEmails);
   }
 
   public ContactData withPhoto(File photo) {
