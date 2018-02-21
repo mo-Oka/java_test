@@ -39,6 +39,7 @@ public class ContactData {
   @Column(name = "mobile")
   @Type(type = "text")
   private String mobilePhone;
+  @Expose
   @Column(name = "work")
   @Type(type = "text")
   private String workPhone;
@@ -62,8 +63,10 @@ public class ContactData {
   private String notes;
   @Transient
   private String allPhones;
+  @Expose
   @Type(type = "text")
   private String email2;
+  @Expose
   @Type(type = "text")
   private String email3;
   @Transient

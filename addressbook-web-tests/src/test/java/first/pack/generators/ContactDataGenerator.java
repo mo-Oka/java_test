@@ -71,7 +71,7 @@ public class ContactDataGenerator {
   private void saveAsCSV(List<ContactData> contacts, File file) throws IOException {
     Writer writer = new FileWriter(file);
     for (ContactData contact : contacts) {
-      writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n",
+      writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n",
               contact.getFirstName(),
               contact.getLastName(),
               contact.getNickName(),
@@ -79,7 +79,11 @@ public class ContactDataGenerator {
               contact.getTitle(),
               contact.getAddress(),
               contact.getHomePhone(),
+              contact.getMobilePhone(),
+              contact.getWorkPhone(),
               contact.getEmail(),
+              contact.getEmail2(),
+              contact.getEmail3(),
               contact.getYear(),
               contact.getGroup(),
               contact.getNotes()
@@ -100,8 +104,12 @@ public class ContactDataGenerator {
               .withCompanyName(String.format("company%s", i))
               .withTitle(String.format("senior%s", i))
               .withAddress(String.format("address %s", i))
-              .withHomePhone(String.format("123%s", i))
+              .withHomePhone(String.format("333%s", i))
+              .withMobilePhone(String.format("222%s", i))
+              .withWorkPhone(String.format("111%s", i))
               .withEmail(String.format("first%s.last%s@email.em", i, i))
+              .withEmail2(String.format("first%s.last%s@email2.em", i, i))
+              .withEmail3(String.format("first%s.last%s@email3.em", i, i))
               .withDay("1")
               .withMonth("June")
               .withYear(String.format("199%s", i))

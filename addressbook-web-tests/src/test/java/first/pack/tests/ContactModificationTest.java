@@ -47,7 +47,7 @@ public class ContactModificationTest extends TestBase{
             .withMonth("May")
             .withYear("2000")
             .withNotes("test note1");
-//    app.contact().goToHomePage();
+    app.contact().goToHomePage();
     app.contact().modify(contact);
     assertThat(app.group().count(), equalTo(before.size()));
 
