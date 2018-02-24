@@ -2,10 +2,10 @@ package first.pack.appmanager;
 
 import first.pack.model.ContactData;
 import first.pack.model.Contacts;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 
 import java.util.List;
 
@@ -34,7 +34,10 @@ public class ContactHelper extends HelperBase {
     type(By.name("byear"), contactData.getYear());
 
     if (creation) {
-      clickDropdown("new_group", contactData.getGroup());
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertTrue(contactData.getGroups().size() == 1);
+        clickDropdown("new_group", contactData.getGroups().iterator().next().getName());
+      }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }

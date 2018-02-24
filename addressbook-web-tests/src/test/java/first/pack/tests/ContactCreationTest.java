@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
 import first.pack.model.ContactData;
 import first.pack.model.Contacts;
+import first.pack.model.Groups;
 import org.hamcrest.junit.MatcherAssert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -76,6 +77,7 @@ public class ContactCreationTest extends TestBase {
 
   @Test(dataProvider = "validContactsFromJSON")
   public void testContactCreation(ContactData contact) {
+    Groups groups = app.db().groups();
     app.contact().goToHomePage();
     Contacts before = app.db().contacts();
     app.contact().create(contact);

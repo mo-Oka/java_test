@@ -85,7 +85,6 @@ public class ContactDataGenerator {
               contact.getEmail2(),
               contact.getEmail3(),
               contact.getYear(),
-              contact.getGroup(),
               contact.getNotes()
               //contact.getPhoto()
               ));
@@ -113,7 +112,6 @@ public class ContactDataGenerator {
               .withDay("1")
               .withMonth("June")
               .withYear(String.format("199%s", i))
-              .withGroup("test1")
               .withNotes(String.format("test note %s", i)))
               //.withPhoto(photo))
       ;
